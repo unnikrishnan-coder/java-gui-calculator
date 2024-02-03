@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Main {
-    public static void main(String[] args) {
+    Main(){
         Font buttonFont = new Font(Font.MONOSPACED,Font.BOLD,35);
         Font screenFont = new Font(Font.MONOSPACED,Font.BOLD,45);
         JTextField screen = new JTextField();
@@ -105,8 +105,9 @@ public class Main {
         f.setLayout(null);//using no layout managers
         f.setVisible(true);//making the frame visible
     }
-
-
+    public static void main(String[] args) {
+        new Main();
+    }
 
 }
 
@@ -121,10 +122,12 @@ class ScreenManager{
 
     public void addTextToScreen(String text){
         String currentText = screen.getText();
-        if(text.equals("+") || text.equals("-") || text.equals("*") || text.equals("/") && !currentText.isBlank()){
-            operand1 = Float.parseFloat(currentText);
-            screen.setText("");
-            operator = text;
+        if(text.equals("+") || text.equals("-") || text.equals("*") || text.equals("/")){
+            if(!(currentText.isEmpty())){
+                operand1 = Float.parseFloat(currentText);
+                screen.setText("");
+                operator = text;
+            }
         }else{
             currentText += text;
             screen.setText(currentText);
